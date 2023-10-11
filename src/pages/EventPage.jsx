@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Box, Image, Flex, Badge, Text, Button } from "@chakra-ui/react";
+import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import { EditButton } from "../components/EditButton";
+import { DeleteButton } from "../components/DeleteButton";
+import { EventForm } from "../components/EventForm";
 
 export const EventPage = () => {
   const [event, setEvent] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const { eventId } = useParams();
 
   useEffect(() => {
@@ -15,28 +19,39 @@ export const EventPage = () => {
     fetchData();
   }, [eventId]);
 
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = (updatedEvent) => {
+    // Save updated event to server
+    setIsEditing(false);
+  };
+
   return (
     <Box key={event.id} p="5" shadow="md" borderWidth="1px">
-      <Image borderRadius="md" src={event.image} />
-      <Flex align="baseline" mt={2}>
-        <Badge colorScheme="pink">Plus</Badge>
-        <Text
-          ml={2}
-          textTransform="uppercase"
-          fontSize="sm"
-          fontWeight="bold"
-          color="pink.800"
-        >
-          {event.title}
-        </Text>
-      </Flex>
-      <Text mt={2}>{event.description}</Text>
-      <Button colorScheme="blue" onClick={() => alert("Edit event clicked!")}>
-        Edit event
-      </Button>
-      <Button colorScheme="red" onClick={() => alert("Delete event clicked!")}>
-        Delete event
-      </Button>
+      {isEditing ? (
+        <EventForm event={event} onAddEvent={handleSave} />
+      ) : (
+        <>
+          <Image borderRadius="md" src={event.image} />
+          <Flex align="baseline" mt={2}>
+            <Badge colorScheme="pink">Plus</Badge>
+            <Text
+              ml={2}
+              textTransform="uppercase"
+              fontSize="sm"
+              fontWeight="bold"
+              color="pink.800"
+            >
+              {event.title}
+            </Text>
+          </Flex>
+          <Text mt={2}>{event.description}</Text>
+          <EditButton onClick={handleEdit} />
+          <DeleteButton onClick={() => alert("Delete event clicked!")} />
+        </>
+      )}
     </Box>
   );
 };

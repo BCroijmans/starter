@@ -33,10 +33,11 @@ export const EventsPage = () => {
   return (
     <div>
       <Input
+        id="Search events"
         placeholder="Search events"
         onChange={(event) => setSearchTerm(event.target.value)}
       />
-      <select onChange={(event) => setFilter(event.target.value)}>
+      <select id="select" onChange={(event) => setFilter(event.target.value)}>
         <option value="">All categories</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
