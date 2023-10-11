@@ -23,21 +23,18 @@ export const EventsPage = () => {
     fetchData();
   }, []);
 
-  const filteredEvents = events.filter((event) => {
-    return (
-      event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      event.categoryIds.includes(filter)
-    );
-  });
+  // Temporarily comment out the filter function
+  // const filteredEvents = events.filter((event) => {
+  //   return event.title.toLowerCase().includes(searchTerm.toLowerCase()) && event.categoryIds.includes(filter);
+  // });
 
   return (
     <div>
       <Input
-        id="Search events"
         placeholder="Search events"
         onChange={(event) => setSearchTerm(event.target.value)}
       />
-      <select id="select" onChange={(event) => setFilter(event.target.value)}>
+      <select onChange={(event) => setFilter(event.target.value)}>
         <option value="">All categories</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
@@ -45,7 +42,8 @@ export const EventsPage = () => {
           </option>
         ))}
       </select>
-      {filteredEvents.map((event) => (
+      {/* Use events instead of filteredEvents */}
+      {events.map((event) => (
         <Box key={event.id} p="5" shadow="md" borderWidth="1px">
           <Link to={`/event/${event.id}`}>
             <Image borderRadius="md" src={event.image} />
