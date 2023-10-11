@@ -12,21 +12,27 @@ export const EventsPage = () => {
     const fetchData = async () => {
       const responseEvents = await fetch("http://localhost:3000/events");
       const dataEvents = await responseEvents.json();
+      console.log("Fetched events:", dataEvents); // Log fetched events
       setEvents(dataEvents);
 
       const responseCategories = await fetch(
         "http://localhost:3000/categories"
       );
       const dataCategories = await responseCategories.json();
+      console.log("Fetched categories:", dataCategories); // Log fetched categories
       setCategories(dataCategories);
     };
     fetchData();
   }, []);
 
-  // Temporarily comment out the filter function
-  // const filteredEvents = events.filter((event) => {
-  //   return event.title.toLowerCase().includes(searchTerm.toLowerCase()) && event.categoryIds.includes(filter);
-  // });
+  console.log("Current events state:", events); // Log current events state
+
+  const filteredEvents = events.filter((event) => {
+    return (
+      event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (filter === "" || event.categoryIds.includes(filter))
+    );
+  });
 
   return (
     <div>
@@ -42,8 +48,7 @@ export const EventsPage = () => {
           </option>
         ))}
       </select>
-      {/* Use events instead of filteredEvents */}
-      {events.map((event) => (
+      {filteredEvents.map((event) => (
         <Box key={event.id} p="5" shadow="md" borderWidth="1px">
           <Link to={`/event/${event.id}`}>
             <Image borderRadius="md" src={event.image} />
