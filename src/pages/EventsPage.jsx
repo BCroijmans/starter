@@ -30,7 +30,7 @@ export const EventsPage = () => {
   const filteredEvents = events.filter((event) => {
     return (
       event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter === "" || event.categoryIds.includes(filter))
+      (filter === "" || event.categoryIds.includes(Number(filter)))
     );
   });
 
