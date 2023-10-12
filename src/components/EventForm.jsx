@@ -10,7 +10,28 @@ export const EventForm = ({ onAddEvent }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddEvent({ title, description, image, startTime, endTime });
+
+    // Create a new event object
+    const newEvent = { title, description, image, startTime, endTime };
+
+    // Make a POST request to your server
+    fetch("http://localhost:3000/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newEvent),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        onAddEvent(data); // Update the state with the new event
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    // Reset form fields
     setTitle("");
     setDescription("");
     setImage("");
@@ -41,7 +62,7 @@ export const EventForm = ({ onAddEvent }) => {
       <FormControl id="image">
         <FormLabel>Image URL</FormLabel>
         <Input
-          id="text"
+          id="image"
           type="text"
           value={image}
           onChange={(e) => setImage(e.target.value)}

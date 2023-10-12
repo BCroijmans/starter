@@ -37,6 +37,7 @@ export const EventsPage = () => {
   return (
     <div>
       <Input
+        key={searchTerm.id}
         placeholder="Search events"
         onChange={(event) => setSearchTerm(event.target.value)}
       />
