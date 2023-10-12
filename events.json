@@ -64,14 +64,6 @@
       "location": "Shavasana Yoga School",
       "startTime": "2023-03-09T06:00:00.000Z",
       "endTime": "2023-03-09T07:00:00.000Z"
-    },
-    {
-      "title": "test",
-      "description": "test",
-      "image": "C:\\Users\\bcroi_000\\Desktop\\final assignment front end\\starter\\src\\assets\\mountainhike.jpg",
-      "startTime": "2023-10-13T09:36",
-      "endTime": "2023-10-27T09:41",
-      "id": 5
     }
   ],
   "categories": [

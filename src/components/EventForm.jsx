@@ -1,37 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
-export const EventForm = ({ onAddEvent }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+export const EventForm = ({ event = {}, onAddEvent }) => {
+  const [title, setTitle] = useState(event.title || "");
+  const [description, setDescription] = useState(event.description || "");
+  const [image, setImage] = useState(event.image || "");
+  const [startTime, setStartTime] = useState(event.startTime || "");
+  const [endTime, setEndTime] = useState(event.endTime || "");
+
+  useEffect(() => {
+    setTitle(event.title || "");
+    setDescription(event.description || "");
+    setImage(event.image || "");
+    setStartTime(event.startTime || "");
+    setEndTime(event.endTime || "");
+  }, [event]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Create a new event object
-    const newEvent = { title, description, image, startTime, endTime };
-
-    // Make a POST request to your server
-    fetch("http://localhost:3000/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newEvent),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        onAddEvent(data); // Update the state with the new event
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
-    // Reset form fields
+    onAddEvent({ title, description, image, startTime, endTime });
     setTitle("");
     setDescription("");
     setImage("");
@@ -63,9 +50,8 @@ export const EventForm = ({ onAddEvent }) => {
         <FormLabel>Image URL</FormLabel>
         <Input
           id="image"
-          type="text"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
+          type="file"
+          onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
         />
       </FormControl>
       <FormControl id="startTime">

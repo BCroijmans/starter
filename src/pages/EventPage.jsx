@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { EditButton } from "../components/EditButton";
@@ -24,8 +24,37 @@ export const EventPage = () => {
   };
 
   const handleSave = (updatedEvent) => {
-    // Save updated event to server
-    setIsEditing(false);
+    // Make a PUT request to your server
+    fetch(`http://localhost:3000/events/${eventId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedEvent),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        setEvent(data); // Update the event with the updated data
+        setIsEditing(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const handleDelete = () => {
+    // Make a DELETE request to your server
+    fetch(`http://localhost:3000/events/${eventId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        console.log("Success:", response);
+        // Redirect to the events page or another page
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -49,7 +78,7 @@ export const EventPage = () => {
           </Flex>
           <Text mt={2}>{event.description}</Text>
           <EditButton onClick={handleEdit} />
-          <DeleteButton onClick={() => alert("Delete event clicked!")} />
+          <DeleteButton onClick={handleDelete} />
         </>
       )}
     </Box>
