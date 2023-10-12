@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { EditButton } from "../components/EditButton";
@@ -24,7 +24,7 @@ export const EventPage = () => {
   };
 
   const handleSave = (updatedEvent) => {
-    // Make a PUT request to the server
+    // Make a PUT request to your server
     fetch(`http://localhost:3000/events/${eventId}`, {
       method: "PUT",
       headers: {
@@ -44,7 +44,7 @@ export const EventPage = () => {
   };
 
   const handleDelete = () => {
-    // Make a DELETE request to the server
+    // Make a DELETE request to your server
     fetch(`http://localhost:3000/events/${eventId}`, {
       method: "DELETE",
     })
