@@ -24,7 +24,7 @@ export const EventPage = () => {
   };
 
   const handleSave = (updatedEvent) => {
-    // Make a PUT request to your server
+    // Make a PUT request to the server
     fetch(`http://localhost:3000/events/${eventId}`, {
       method: "PUT",
       headers: {
@@ -44,7 +44,7 @@ export const EventPage = () => {
   };
 
   const handleDelete = () => {
-    // Make a DELETE request to your server
+    // Make a DELETE request to the server
     fetch(`http://localhost:3000/events/${eventId}`, {
       method: "DELETE",
     })
