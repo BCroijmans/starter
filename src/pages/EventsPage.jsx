@@ -35,13 +35,19 @@ export const EventsPage = () => {
   });
 
   return (
-    <div>
+    <Box>
       <Input
+        id="search"
+        name="search"
         key={searchTerm.id}
         placeholder="Search events"
         onChange={(event) => setSearchTerm(event.target.value)}
       />
-      <select onChange={(event) => setFilter(event.target.value)}>
+      <select
+        id="select"
+        name="select"
+        onChange={(event) => setFilter(event.target.value)}
+      >
         <option value="">All categories</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
@@ -66,12 +72,13 @@ export const EventsPage = () => {
               </Text>
             </Flex>
             <Text mt={2}>{event.description}</Text>
+            <Text mt={2}>{event.location}</Text>
           </Link>
         </Box>
       ))}
       <Button colorScheme="blue" onClick={() => alert("Add event clicked!")}>
         Add event
       </Button>
-    </div>
+    </Box>
   );
 };

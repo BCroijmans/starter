@@ -4,10 +4,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import { Home } from "./pages/Home";
 import { EventsPage } from "./pages/EventsPage";
 import { EventPage } from "./pages/EventPage";
-import { Login } from "./components/Login";
 
 function App() {
   return (
@@ -15,8 +13,6 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />{" "}
           <Route path="/events" element={<EventsPage />} />
           <Route path="/event/:eventId" element={<EventPage />} />
         </Routes>
