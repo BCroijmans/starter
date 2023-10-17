@@ -8,5 +8,9 @@ export const formatTime = (dateString) => {
   hours = hours || 12;
   minutes = minutes < 10 ? "0" + minutes : minutes;
 
-  return ` : ${hours}:${minutes} ${ampm}`;
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return ` : ${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 };

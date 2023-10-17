@@ -77,6 +77,19 @@
       ],
       "createdBy": 1,
       "id": 5
+    },
+    {
+      "title": "test image upload van assets map",
+      "description": "wandelen gek",
+      "image": {},
+      "startTime": "2023-10-25T12:44",
+      "endTime": "2023-10-27T12:44",
+      "location": "mount everest",
+      "categoryIds": [
+        1
+      ],
+      "createdBy": 1,
+      "id": 6
     }
   ],
   "categories": [
