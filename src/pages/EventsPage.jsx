@@ -6,8 +6,8 @@ import {
   Badge,
   Text,
   Input,
-  Select,
   Modal,
+  Select,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import { AddButton } from "../components/Addbutton";
 import { EventForm } from "../components/EventForm";
+import { formatTime } from "../components/StartEndTime";
 
 export const EventsPage = () => {
   const [events, setEvents] = useState([]);
@@ -68,6 +69,7 @@ export const EventsPage = () => {
         placeholder="All categories"
         onChange={(event) => setFilter(event.target.value)}
       >
+        <option value="category.id">All categories</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
             {category.name}
@@ -151,10 +153,10 @@ export const EventsPage = () => {
                   ))}
                 </Box>
               )}
-              <Text mt={2}>{event.description}</Text>
-              <Text mt={2}>{event.location}</Text>
-              <Text mt={2}>{event.startTime}</Text>
-              <Text mt={2}>{event.endTime}</Text>
+              <Text mt={2}>What are we going to do ? {event.description}</Text>
+              <Text mt={2}>Location {event.location}</Text>
+              <Text mt={2}>Start time event {formatTime(event.startTime)}</Text>
+              <Text mt={2}>End time event {formatTime(event.endTime)}</Text>
             </Link>
           </Box>
         );

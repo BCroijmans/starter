@@ -24,6 +24,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { EditButton } from "../components/EditButton";
 import { DeleteButton } from "../components/DeleteButton";
 import { EventForm } from "../components/EventForm";
+import { formatTime } from "../components/StartEndTime";
 
 export const EventPage = () => {
   const [event, setEvent] = useState({});
@@ -144,10 +145,10 @@ export const EventPage = () => {
           ))}
         </Box>
       )}
-      <Text mt={2}>{event.description}</Text>
-      <Text mt={2}>{event.location}</Text>
-      <Text mt={2}>{event.startTime}</Text>
-      <Text mt={2}>{event.endTime}</Text>
+      <Text mt={2}>What are we going to do ? {event.description}</Text>
+      <Text mt={2}>Location : {event.location}</Text>
+      <Text mt={2}>Start time event {formatTime(event.startTime)}</Text>
+      <Text mt={2}>End time event {formatTime(event.endTime)}</Text>
       <EditButton onClick={handleEdit} />
       <DeleteButton onClick={handleDelete} />
       {creator && (
