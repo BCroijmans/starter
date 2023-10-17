@@ -81,7 +81,6 @@ export const EventForm = ({ event, onAddEvent, categories }) => {
       <Select
         id="categoryIds"
         name="categoryIds"
-        value={categoryIds}
         placeholder="Select category"
         onChange={(e) => setCategoryIds([Number(e.target.value)])}
       >
