@@ -69,7 +69,6 @@ export const EventsPage = () => {
         placeholder="All categories"
         onChange={(event) => setFilter(event.target.value)}
       >
-        <option value="category.id">All categories</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
             {category.name}

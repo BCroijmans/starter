@@ -13,17 +13,17 @@
   ],
   "events": [
     {
-      "id": 1,
-      "createdBy": 1,
       "title": "Trampoline party",
       "description": "Bounce around with your friends",
       "image": "https://i.pinimg.com/736x/3d/2f/af/3d2faf4e3188d34a9fcdc00df59e77b0.jpg",
+      "startTime": "2023-03-10T18:00",
+      "endTime": "2023-03-10T17:00:00.000Z",
+      "location": "My back yards",
       "categoryIds": [
         2
       ],
-      "location": "My back yard",
-      "startTime": "2023-03-10T18:00",
-      "endTime": "2023-03-10T17:00:00.000Z"
+      "createdBy": 1,
+      "id": 1
     },
     {
       "id": 2,
@@ -39,18 +39,18 @@
       "endTime": "2023-04-06T17:46"
     },
     {
-      "id": 3,
-      "createdBy": 2,
       "title": "Badminton game",
       "description": "Hit that shuttle!",
       "image": "https://s3.eu-west-2.amazonaws.com/ws-activestirling/production/Badminton/_1200x630_crop_center-center_none/Badminton-3.jpg",
+      "startTime": "2023-03-15T12:00:00.000Z",
+      "endTime": "2023-10-17T16:03",
+      "location": "The Park",
       "categoryIds": [
         1,
         2
       ],
-      "location": "The Park",
-      "startTime": "2023-03-15T12:00:00.000Z",
-      "endTime": "2023-03-15T13:30:00.000Z"
+      "createdBy": 2,
+      "id": 3
     },
     {
       "id": 4,
@@ -64,6 +64,32 @@
       "location": "Shavasana Yoga School",
       "startTime": "2023-03-09T06:00:00.000Z",
       "endTime": "2023-03-09T07:00:00.000Z"
+    },
+    {
+      "title": "All you can Eat !!",
+      "description": "Sushi jam jam",
+      "image": "/assets/sushi.jpg",
+      "startTime": "2023-10-17T15:59",
+      "endTime": "2023-11-02T15:59",
+      "location": "ad home",
+      "categoryIds": [
+        3
+      ],
+      "createdBy": 1,
+      "id": 5
+    },
+    {
+      "title": "Halloween",
+      "description": "Scaring people",
+      "image": "/assets/joker.jpg",
+      "startTime": "2023-10-11T15:59",
+      "endTime": "2023-11-09T15:59",
+      "location": "all the dark places you can imagine",
+      "categoryIds": [
+        3
+      ],
+      "createdBy": 2,
+      "id": 6
     }
   ],
   "categories": [

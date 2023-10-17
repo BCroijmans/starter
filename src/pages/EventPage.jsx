@@ -74,15 +74,29 @@ export const EventPage = () => {
     })
       .then((response) => {
         console.log("Success:", response);
-
         navigate("/events");
+
+        toast({
+          title: "Event deleted.",
+          description: "The event has been successfully deleted.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
       })
       .catch((error) => {
         console.error("Error:", error);
+
+        toast({
+          title: "An error occurred.",
+          description: "Unable to delete event.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
       });
     setIsOpen(false);
   };
-
   const handleSave = (updatedEvent) => {
     fetch(`http://localhost:3000/events/${eventId}`, {
       method: "PUT",
