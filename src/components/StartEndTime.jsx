@@ -12,5 +12,5 @@ export const formatTime = (dateString) => {
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
 
-  return ` : ${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+  return `  ${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 };

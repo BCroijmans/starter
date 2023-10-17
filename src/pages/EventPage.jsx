@@ -145,10 +145,22 @@ export const EventPage = () => {
           ))}
         </Box>
       )}
-      <Text mt={2}>What are we going to do ? {event.description}</Text>
-      <Text mt={2}>Location : {event.location}</Text>
-      <Text mt={2}>Start time event {formatTime(event.startTime)}</Text>
-      <Text mt={2}>End time event {formatTime(event.endTime)}</Text>
+      <Text fontWeight="bold" mt={2}>
+        What are we going to do ?{" "}
+      </Text>
+      <Text>{event.description}</Text>
+      <Text fontWeight="bold" mt={2}>
+        Location :{" "}
+      </Text>
+      <Text>{event.location}</Text>
+      <Text fontWeight="bold" mt={2}>
+        Start time event{" "}
+      </Text>
+      <Text>{formatTime(event.startTime)}</Text>
+      <Text fontWeight="bold" mt={2}>
+        End time event{" "}
+      </Text>
+      <Text>{formatTime(event.endTime)}</Text>
       <EditButton onClick={handleEdit} />
       <DeleteButton onClick={handleDelete} />
       {creator && (

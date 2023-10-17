@@ -5,14 +5,16 @@ export const EventForm = ({ event, onAddEvent, categories }) => {
   const [title, setTitle] = useState(event.title || "");
   const [description, setDescription] = useState(event.description || "");
   const [image, setImage] = useState(event.image || "");
+  const [imageUrl, setImageUrl] = useState("");
   const [startTime, setStartTime] = useState(event.startTime || "");
   const [endTime, setEndTime] = useState(event.endTime || "");
   const [location, setLocation] = useState(event.location || "");
   const [categoryIds, setCategoryIds] = useState(event.categoryIds || []);
   const [createdBy, setCreatedBy] = useState(event.createdBy || "");
 
-  const handleImageUpload = (e) => {
-    setImage(e.target.files[0]);
+  const handleImageUrlChange = (e) => {
+    setImageUrl(e.target.value);
+    setImage(null);
   };
 
   const handleSubmit = (e) => {
@@ -20,7 +22,7 @@ export const EventForm = ({ event, onAddEvent, categories }) => {
     onAddEvent({
       title,
       description,
-      image,
+      image: image || imageUrl,
       startTime,
       endTime,
       location,
@@ -47,12 +49,14 @@ export const EventForm = ({ event, onAddEvent, categories }) => {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
       />
+
       <Input
-        id="image"
-        name="image"
-        type="file"
-        onChange={handleImageUpload}
-        placeholder="Upload Image"
+        id="imageUrl"
+        name="imageUrl"
+        type="text"
+        value={imageUrl}
+        onChange={handleImageUrlChange}
+        placeholder="Or enter image URL"
       />
       <Input
         id="startTime"
