@@ -120,30 +120,45 @@ export const EventsPage = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
+      {filteredEvents.map((event) => {
+        const categoryNames = event.categoryIds
+          ? event.categoryIds.map(
+              (id) => categories.find((category) => category.id === id)?.name
+            )
+          : [];
 
-      {filteredEvents.map((event) => (
-        <Box key={event.id} p="5" shadow="md" borderWidth="1px">
-          <Link to={`/event/${event.id}`}>
-            <Image borderRadius="md" src={event.image} />
-            <Flex align="baseline" mt={2}>
-              <Badge colorScheme="pink">Plus</Badge>
-              <Text
-                ml={2}
-                textTransform="uppercase"
-                fontSize="sm"
-                fontWeight="bold"
-                color="pink.800"
-              >
-                {event.title}
-              </Text>
-            </Flex>
-            <Text mt={2}>{event.description}</Text>
-            <Text mt={2}>{event.location}</Text>
-            <Text mt={2}>{event.startTime}</Text>
-            <Text mt={2}>{event.endTime}</Text>
-          </Link>
-        </Box>
-      ))}
+        return (
+          <Box key={event.id} p="5" shadow="md" borderWidth="1px">
+            <Link to={`/event/${event.id}`}>
+              <Image borderRadius="md" src={event.image} />
+              <Flex align="baseline" mt={2}>
+                <Badge colorScheme="pink">Plus</Badge>
+                <Text
+                  ml={2}
+                  textTransform="uppercase"
+                  fontSize="sm"
+                  fontWeight="bold"
+                  color="pink.800"
+                >
+                  {event.title}
+                </Text>
+              </Flex>
+              {categoryNames.length > 0 && (
+                <Box mt={2}>
+                  <Text fontWeight="bold">Categories:</Text>
+                  {categoryNames.map((name, index) => (
+                    <Text key={index}>{name}</Text>
+                  ))}
+                </Box>
+              )}
+              <Text mt={2}>{event.description}</Text>
+              <Text mt={2}>{event.location}</Text>
+              <Text mt={2}>{event.startTime}</Text>
+              <Text mt={2}>{event.endTime}</Text>
+            </Link>
+          </Box>
+        );
+      })}
     </div>
   );
 };

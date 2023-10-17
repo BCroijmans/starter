@@ -35,6 +35,7 @@ export const EventPage = () => {
   const cancelRef = useRef();
   const navigate = useNavigate();
   const toast = useToast();
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +50,11 @@ export const EventPage = () => {
       );
       const dataCategories = await responseCategories.json();
       setCategories(dataCategories);
+
+      const responseUsers = await fetch("http://localhost:3000/users");
+
+      const dataUsers = await responseUsers.json();
+      setUsers(dataUsers);
     };
     fetchData();
   }, [eventId]);
@@ -108,6 +114,12 @@ export const EventPage = () => {
         });
       });
   };
+  const creator = users.find((user) => user.id === event.createdBy);
+  const categoryNames = event.categoryIds
+    ? event.categoryIds.map(
+        (id) => categories.find((category) => category.id === id)?.name
+      )
+    : [];
 
   return (
     <Box key={event.id} p="5" shadow="md" borderWidth="1px">
@@ -124,12 +136,26 @@ export const EventPage = () => {
           {event.title}
         </Text>
       </Flex>
+      {categoryNames.length > 0 && (
+        <Box mt={2}>
+          <Text fontWeight="bold">Categories:</Text>
+          {categoryNames.map((name, index) => (
+            <Text key={index}>{name}</Text>
+          ))}
+        </Box>
+      )}
       <Text mt={2}>{event.description}</Text>
       <Text mt={2}>{event.location}</Text>
       <Text mt={2}>{event.startTime}</Text>
       <Text mt={2}>{event.endTime}</Text>
       <EditButton onClick={handleEdit} />
       <DeleteButton onClick={handleDelete} />
+      {creator && (
+        <Box key={event.id} p="5" shadow="md" borderWidth="1px">
+          <Text mt={2}>Created By: {creator.name}</Text>
+          <Image borderRadius="md" src={creator.image} alt={creator.name} />
+        </Box>
+      )}
 
       <Modal isOpen={isEditing} onClose={() => setIsEditing(false)}>
         <ModalOverlay />
