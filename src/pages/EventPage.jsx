@@ -80,7 +80,7 @@ export const EventPage = () => {
         console.log("Success:", response);
         navigate("/events");
 
-        toast({
+        useToast({
           title: "Event deleted.",
           description: "The event has been successfully deleted.",
           status: "success",
@@ -90,8 +90,7 @@ export const EventPage = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-
-        toast({
+        useToast({
           title: "An error occurred.",
           description: "Unable to delete event.",
           status: "error",
@@ -111,7 +110,6 @@ export const EventPage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         setEvent(data);
         setIsEditing(false);
         toast({
@@ -206,7 +204,7 @@ export const EventPage = () => {
               <Box color="black" fontSize="md" pb="2rem">
                 {" "}
                 <Heading bg="rgba(255, 255, 0, 0.5)" fontSize="md" mt={2}>
-                  What are we going to do ?
+                  Description :
                 </Heading>
                 <Text bg="rgba(255, 255, 0, 0.5)">{event.description}</Text>
                 <Heading
@@ -224,7 +222,7 @@ export const EventPage = () => {
                   fontWeight="bold"
                   mt={2}
                 >
-                  Start time event :
+                  Starttime event :
                 </Heading>
                 <Text bg="rgba(255, 255, 0, 0.5)">
                   {formatTime(event.startTime)}
@@ -235,7 +233,7 @@ export const EventPage = () => {
                   fontWeight="bold"
                   mt={2}
                 >
-                  End time event :
+                  Endtime event :
                 </Heading>
                 <Text bg="rgba(255, 255, 0, 0.5)">
                   {formatTime(event.endTime)}
