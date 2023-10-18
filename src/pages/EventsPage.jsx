@@ -76,7 +76,14 @@ export const EventsPage = () => {
       })}
     >
       <Box backgroundColor="black" color="white">
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+          }}
+          gap={6}
+        >
           <Input
             fontWeight="bold"
             backgroundColor="yellow"
