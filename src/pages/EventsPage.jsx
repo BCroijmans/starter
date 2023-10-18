@@ -24,13 +24,6 @@ import { AddButton } from "../components/Addbutton";
 import { EventForm } from "../components/EventForm";
 import { formatTime } from "../components/StartEndTime";
 
-const theme = extendTheme({
-  fonts: {
-    heading: "Courier New",
-    body: "Courier New",
-  },
-});
-
 export const EventsPage = () => {
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -67,7 +60,21 @@ export const EventsPage = () => {
   });
 
   return (
-    <ChakraProvider backgroundColor="black" theme={theme}>
+    <ChakraProvider // Added extendTheme to set global styles
+      theme={extendTheme({
+        fonts: {
+          heading: "Courier New",
+          body: "Courier New",
+        },
+        styles: {
+          global: {
+            body: {
+              backgroundColor: "black", // Set the background color of the entire page to black
+            },
+          },
+        },
+      })}
+    >
       <Box backgroundColor="black" color="white">
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           <Input

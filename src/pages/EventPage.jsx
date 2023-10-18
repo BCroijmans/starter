@@ -30,13 +30,6 @@ import { DeleteButton } from "../components/DeleteButton";
 import { EventForm } from "../components/EventForm";
 import { formatTime } from "../components/StartEndTime";
 
-const theme = extendTheme({
-  fonts: {
-    heading: "Courier New",
-    body: "Courier New",
-  },
-});
-
 export const EventPage = () => {
   const [event, setEvent] = useState({});
   const [isEditing, setIsEditing] = useState(false);
@@ -148,7 +141,21 @@ export const EventPage = () => {
     : [];
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider // Added extendTheme to set global styles
+      theme={extendTheme({
+        fonts: {
+          heading: "Courier New",
+          body: "Courier New",
+        },
+        styles: {
+          global: {
+            body: {
+              backgroundColor: "black", // Set the background color of the entire page to black
+            },
+          },
+        },
+      })}
+    >
       <Box
         backgroundColor="black"
         key={event.id}
@@ -267,7 +274,7 @@ export const EventPage = () => {
               <EventForm
                 event={event}
                 categories={categories}
-                onEditEvent={handleSave}
+                onAddEvent={handleSave}
               />
             </ModalBody>
           </ModalContent>
