@@ -19,12 +19,23 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   useToast,
+  ChakraProvider,
+  extendTheme,
+  Heading,
+  Grid,
 } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { EditButton } from "../components/EditButton";
 import { DeleteButton } from "../components/DeleteButton";
 import { EventForm } from "../components/EventForm";
 import { formatTime } from "../components/StartEndTime";
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Courier New",
+    body: "Courier New",
+  },
+});
 
 export const EventPage = () => {
   const [event, setEvent] = useState({});
@@ -137,95 +148,159 @@ export const EventPage = () => {
     : [];
 
   return (
-    <Box key={event.id} p="5" shadow="md" borderWidth="1px">
-      <Image borderRadius="md" src={event.image} />
-      <Flex align="baseline" mt={2}>
-        <Badge colorScheme="pink">Plus</Badge>
-        <Text
-          ml={2}
-          textTransform="uppercase"
-          fontSize="sm"
-          fontWeight="bold"
-          color="pink.800"
-        >
-          {event.title}
-        </Text>
-      </Flex>
-      {categoryNames.length > 0 && (
-        <Box mt={2}>
-          <Text fontWeight="bold">Categories:</Text>
-          {categoryNames.map((name, index) => (
-            <Text key={index}>{name}</Text>
-          ))}
-        </Box>
-      )}
-      <Text fontWeight="bold" mt={2}>
-        What are we going to do ?{" "}
-      </Text>
-      <Text>{event.description}</Text>
-      <Text fontWeight="bold" mt={2}>
-        Location :{" "}
-      </Text>
-      <Text>{event.location}</Text>
-      <Text fontWeight="bold" mt={2}>
-        Start time event{" "}
-      </Text>
-      <Text>{formatTime(event.startTime)}</Text>
-      <Text fontWeight="bold" mt={2}>
-        End time event{" "}
-      </Text>
-      <Text>{formatTime(event.endTime)}</Text>
-      <EditButton onClick={handleEdit} />
-      <DeleteButton onClick={handleDelete} />
-      {creator && (
-        <Box key={event.id} p="5" shadow="md" borderWidth="1px">
-          <Text mt={2}>Created By: {creator.name}</Text>
-          <Image borderRadius="md" src={creator.image} alt={creator.name} />
-        </Box>
-      )}
-
-      <Modal isOpen={isEditing} onClose={() => setIsEditing(false)}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit Event</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <EventForm
-              event={event}
-              categories={categories}
-              onAddEvent={handleSave}
-            />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-
-      <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
+    <ChakraProvider theme={theme}>
+      <Box
+        backgroundColor="black"
+        key={event.id}
+        p="5"
+        shadow="md"
+        borderWidth="1px"
+        maxWidth="800px"
+        margin="auto"
       >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete Event
-            </AlertDialogHeader>
+        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+          <Box>
+            <Image borderRadius="md" src={event.image} />
+            <Flex align="baseline" mt={2}>
+              <Badge bg="yellow">Plus</Badge>
+              <Text
+                ml={2}
+                textTransform="uppercase"
+                fontSize="2xl"
+                fontWeight="bold"
+                color="Yellow"
+              >
+                {event.title}
+              </Text>
+            </Flex>
+            <EditButton onClick={handleEdit} />
+            <DeleteButton onClick={handleDelete} />
+          </Box>
+          <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+            <Box>
+              {categoryNames.length > 0 && (
+                <Box mt={2}>
+                  <Text bg="rgba(255, 255, 0, 0.5)" fontWeight="bold">
+                    Categories:
+                  </Text>
+                  {categoryNames.map((name, index) => (
+                    <Text bg="rgba(255, 255, 0, 0.5)" key={index}>
+                      {name}
+                    </Text>
+                  ))}
+                </Box>
+              )}
+              <Box color="black" fontSize="md" pb="2rem">
+                {" "}
+                <Heading bg="rgba(255, 255, 0, 0.5)" fontSize="md" mt={2}>
+                  What are we going to do ?
+                </Heading>
+                <Text bg="rgba(255, 255, 0, 0.5)">{event.description}</Text>
+                <Heading
+                  bg="rgba(255, 255, 0, 0.5)"
+                  fontSize="md"
+                  fontWeight="bold"
+                  mt={2}
+                >
+                  Location :{" "}
+                </Heading>
+                <Text bg="rgba(255, 255, 0, 0.5)">{event.location}</Text>
+                <Heading
+                  bg="rgba(255, 255, 0, 0.5)"
+                  fontSize="md"
+                  fontWeight="bold"
+                  mt={2}
+                >
+                  Start time event :
+                </Heading>
+                <Text bg="rgba(255, 255, 0, 0.5)">
+                  {formatTime(event.startTime)}
+                </Text>
+                <Heading
+                  bg="rgba(255, 255, 0, 0.5)"
+                  fontSize="md"
+                  fontWeight="bold"
+                  mt={2}
+                >
+                  End time event :
+                </Heading>
+                <Text bg="rgba(255, 255, 0, 0.5)">
+                  {formatTime(event.endTime)}
+                </Text>
+              </Box>
+            </Box>
 
-            <AlertDialogBody>
-              Are you sure you want to delete this event? This action cannot be
-              undone.
-            </AlertDialogBody>
+            {creator && (
+              <Flex
+                key={event.id}
+                p="5"
+                shadow="md"
+                borderWidth="1px"
+                direction="column"
+                alignItems="center"
+              >
+                <Box flexShrink={0}>
+                  <Image
+                    borderRadius="full"
+                    boxSize="100px"
+                    src={creator.image}
+                    alt={creator.name}
+                    mb="4"
+                  />
+                </Box>
+                <Box ml={4}>
+                  <Text color="yellow" mt={2}>
+                    Created By: {creator.name}
+                  </Text>
+                </Box>
+              </Flex>
+            )}
+          </Grid>
+        </Grid>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                No
-              </Button>
-              <Button colorScheme="red" onClick={confirmDelete} ml={3}>
-                Yes
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-    </Box>
+        <Modal isOpen={isEditing} onClose={() => setIsEditing(false)}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Edit Event</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <EventForm
+                event={event}
+                categories={categories}
+                onEditEvent={handleSave}
+              />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Event
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure you want to delete this event? This action cannot
+                be undone.
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  No
+                </Button>
+                <Button colorScheme="red" onClick={confirmDelete} ml={3}>
+                  Yes
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
+      </Box>
+    </ChakraProvider>
   );
 };

@@ -79,17 +79,69 @@
       "id": 5
     },
     {
-      "title": "Halloween",
-      "description": "Scaring people",
-      "image": "/assets/joker.jpg",
-      "startTime": "2023-10-11T15:59",
-      "endTime": "2023-11-09T15:59",
-      "location": "all the dark places you can imagine",
+      "title": "Phote Editing",
+      "description": "Work shop",
+      "image": "/assets/cat.jpg",
+      "startTime": "2023-10-17T17:18",
+      "endTime": "2023-10-25T17:18",
+      "location": "@ the Photo Shop",
       "categoryIds": [
         3
       ],
       "createdBy": 2,
       "id": 6
+    },
+    {
+      "title": "Halloween",
+      "description": "Scaring people ",
+      "image": "/assets/joker.jpg",
+      "startTime": "2023-10-18T23:25",
+      "endTime": "2023-10-19T23:25",
+      "location": "inside a building near you",
+      "categoryIds": [
+        3
+      ],
+      "createdBy": 2,
+      "id": 7
+    },
+    {
+      "title": "Funeral",
+      "description": "Choosing you the coffin",
+      "image": "/assets/funeral.jpg",
+      "startTime": "2023-11-01T11:25",
+      "endTime": "2023-10-26T11:25",
+      "location": "The Cemetary",
+      "categoryIds": [
+        3
+      ],
+      "createdBy": 1,
+      "id": 8
+    },
+    {
+      "title": "Exploring History",
+      "description": "looking ad castles ",
+      "image": "/assets/castle.jpg",
+      "startTime": "2023-11-29T11:27",
+      "endTime": "2023-11-29T23:29",
+      "location": "La Mancha Spain",
+      "categoryIds": [
+        3
+      ],
+      "createdBy": 1,
+      "id": 9
+    },
+    {
+      "title": "Let try magic",
+      "description": "Balance a can if you can ?",
+      "image": "/assets/magic.jpg",
+      "startTime": "2023-10-19T03:28",
+      "endTime": "2023-11-03T11:28",
+      "location": "Ad my place",
+      "categoryIds": [
+        2
+      ],
+      "createdBy": 1,
+      "id": 10
     }
   ],
   "categories": [
