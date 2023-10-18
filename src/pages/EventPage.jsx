@@ -162,10 +162,13 @@ export const EventPage = () => {
         p="5"
         shadow="md"
         borderWidth="1px"
-        maxWidth="800px"
+        maxWidth={{ base: "90%", md: "80%", lg: "800px" }} // Added responsive maxWidth for different breakpoints
         margin="auto"
       >
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        <Grid
+          templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+          gap={6}
+        >
           <Box>
             <Image borderRadius="md" src={event.image} />
             <Flex align="baseline" mt={2}>
@@ -183,7 +186,10 @@ export const EventPage = () => {
             <EditButton onClick={handleEdit} />
             <DeleteButton onClick={handleDelete} />
           </Box>
-          <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+          <Grid
+            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+            gap={6}
+          >
             <Box>
               {categoryNames.length > 0 && (
                 <Box mt={2}>
